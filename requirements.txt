@@ -5,3 +5,5 @@ seaborn
 ipykernel
 Flask
 imblearn
+
+-e .

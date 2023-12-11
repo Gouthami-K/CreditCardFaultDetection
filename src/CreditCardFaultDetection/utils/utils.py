@@ -6,8 +6,9 @@ import pandas as pd
 from src.CreditCardFaultDetection.logger import logging
 from src.CreditCardFaultDetection.exception import customexception
 
-from sklearn.metrics import r2_score, mean_absolute_error,mean_squared_error
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report
 from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import GridSearchCV
 
 def save_object(file_path, obj):
     try:
@@ -21,31 +22,32 @@ def save_object(file_path, obj):
     except Exception as e:
         raise customexception(e, sys)
     
-def evaluate_model(X_train,y_train,X_test,y_test,models):
+def evaluate_model(X_train, y_train, X_test, y_test, models):
     try:
         report = {}
-        for i in range(len(models)):
-            model = list(models.values())[i]
-            # Train model
-            model.fit(X_train,y_train)
 
-            
+        for model_name, model in models.items():
+            # Train model
+            model.fit(X_train, y_train)
 
             # Predict Testing data
-            y_test_pred =model.predict(X_test)
+            y_test_pred = model.predict(X_test)
+            y_train_pred = model.predict(X_train)
 
-            # Get R2 scores for train and test data
-            #train_model_score = r2_score(ytrain,y_train_pred)
-            test_model_score = r2_score(y_test,y_test_pred)
+            # Get accuracy scores for train and test data
+            train_model_score = accuracy_score(y_train, y_train_pred)
+            test_model_score = accuracy_score(y_test, y_test_pred)
 
-            report[list(models.keys())[i]] =  test_model_score
+
+            # Store scores in the report dictionary
+            report[model_name] = {'train_accuracy': train_model_score, 'test_accuracy': test_model_score}
 
         return report
 
     except Exception as e:
-        logging.info('Exception occured during model training')
-        raise customexception(e,sys)
-    
+        logging.info('Exception occurred during model training')
+        raise customexception(e, sys)
+
 def load_object(file_path):
     try:
         with open(file_path,'rb') as file_obj:
@@ -101,7 +103,10 @@ def modify_columns(df):
     
     except Exception as e:
         raise customexception(e, sys)
-    
+
+# Import necessary libraries
+from imblearn.over_sampling import SMOTE
+
 def smote_balance(data):
     try:
         target_column_name = 'default.payment.next.month'
@@ -117,9 +122,17 @@ def smote_balance(data):
 
     except Exception as e:
         raise customexception(e, sys)
+
     
 def replace_categories(df):
     try:
+        # Check and filter 'SEX' column
+        valid_sex_values = {1, 2}
+        invalid_sex_values = set(df['SEX'].unique()) - valid_sex_values
+
+        if invalid_sex_values:
+            raise ValueError(f"Invalid values found in 'SEX' column: {invalid_sex_values}. Expected values are 1 and 2.")
+
         df.replace({'SEX': {1: 'MALE', 2: 'FEMALE'},
                     'EDUCATION': {1: 'graduate school', 2: 'university', 3: 'high school', 4: 'others'},
                     'MARRIAGE': {1: 'married', 2: 'single', 3: 'others'}}, inplace=True)
@@ -127,11 +140,12 @@ def replace_categories(df):
         logging.error(f"Error in replacing categories: {e}")
         raise customexception(e, sys)
 
+
       
-#def rename_and_drop(df):
-    #try:
-        #df['IsDefaulter'] = df['default.payment.next.month']
-        #df.drop('default.payment.next.month', axis=1, inplace=True)
-    #except Exception as e:
-        #logging.error(f"Error in renaming and dropping columns: {e}")
-        #raise customexception(e, sys)
+def rename_and_drop(df):
+    try:
+        df['IsDefaulter'] = df['default.payment.next.month']
+        df.drop('default.payment.next.month', axis=1, inplace=True)
+    except Exception as e:
+        logging.error(f"Error in renaming and dropping columns: {e}")
+        raise customexception(e, sys)

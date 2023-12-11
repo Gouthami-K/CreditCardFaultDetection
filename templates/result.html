@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Defaulter Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Arimo', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #3498db;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .result {
+      margin: auto;
+      width: 60%;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 2em;
+      margin-top: 2em;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .result h1 {
+      color: #3498db;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Credit Card Defaulter Prediction</h1>
+  </header>
+
+  <div class="result">
+    <h1>The Credit card fault detection result is: <span style="color: {{result_color}};">{{final_result}}</span></h1>
+  </div>
+</body>
+</html>

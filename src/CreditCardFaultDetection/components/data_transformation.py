@@ -31,12 +31,16 @@ class DataTransformation:
         
         try:
             logging.info('Data Transformation initiated')
+
+            # Define which columns should be ordinal-encoded and which should be scaled
+            numerical_cols = ['LIMIT_BAL', 'AGE', 'BILL_AMT1', 'BILL_AMT2', 'BILL_AMT3', 'BILL_AMT4', 'BILL_AMT5',
+                              'BILL_AMT6', 'PAY_AMT1', 'PAY_AMT2', 'PAY_AMT3', 'PAY_AMT4', 'PAY_AMT5', 'PAY_AMT6']
+            categorical_cols = ['SEX', 'EDUCATION', 'MARRIAGE', 'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6']
             
             # Define which columns should be onehot-encoded and which should be scaled
-            categorical_cols = ['SEX', 'EDUCATION', 'MARRIAGE', 'PAY_SEPT', 'PAY_AUG', 
-                                     'PAY_JUL', 'PAY_JUN', 'PAY_MAY', 'PAY_APR']
-            numerical_cols = ['LIMIT_BAL', 'AGE', 'BILL_AMT_SEPT', 'BILL_AMT_AUG', 'BILL_AMT_JUL', 'BILL_AMT_JUN', 'BILL_AMT_MAY',
-                              'BILL_AMT_APR','PAY_AMT_SEPT','PAY_AMT_AUG','PAY_AMT_JUL','PAY_AMT_JUN','PAY_AMT_MAY','PAY_AMT_APR']
+            #categorical_cols = ['SEX', 'EDUCATION', 'MARRIAGE', 'PAY_SEPT', 'PAY_AUG', 'PAY_JUL', 'PAY_JUN', 'PAY_MAY', 'PAY_APR']
+            #numerical_cols = ['LIMIT_BAL', 'AGE', 'BILL_AMT_SEPT', 'BILL_AMT_AUG', 'BILL_AMT_JUL', 'BILL_AMT_JUN', 'BILL_AMT_MAY',
+                              #'BILL_AMT_APR','PAY_AMT_SEPT','PAY_AMT_AUG','PAY_AMT_JUL','PAY_AMT_JUN','PAY_AMT_MAY','PAY_AMT_APR']
             
             # Define the custom ranking for each ordinal variable
             #SEX_categories = ['FEMALE', 'MALE']
@@ -60,7 +64,7 @@ class DataTransformation:
                 steps=[
                 #('imputer',SimpleImputer(strategy='most_frequent')),
                 #('ordinalencoder',OrdinalEncoder(categories=[SEX_categories])),
-                ('onehotencoder', OneHotEncoder(sparse_output=False,handle_unknown='ignore', categories='auto')),
+                #('onehotencoder', OneHotEncoder(sparse_output=False,handle_unknown='ignore')),
                 ('scaler',StandardScaler())
                 ]
             )
@@ -99,6 +103,11 @@ class DataTransformation:
             target_column_name = 'default.payment.next.month'
             drop_columns = [target_column_name, 'ID']
 
+            logging.info("Replacing categories")
+            # Replace categories
+            #replace_categories(train_df)
+            #replace_categories(test_df)
+
             logging.info("Modifying columns")
             # Modify columns
             modify_columns(train_df)
@@ -106,32 +115,27 @@ class DataTransformation:
 
             logging.info("Renaming columns")
             # Rename columns
-            rename_columns(train_df)
-            rename_columns(test_df)
+            #rename_columns(train_df)
+            #rename_columns(test_df)
 
             #logging.info("Rename and drop columns")
             # Rename and drop
             #rename_and_drop(train_df)
             #rename_and_drop(test_df)
 
-            logging.info("Applying SMOTE to balance classes")
+            #logging.info("Applying SMOTE to balance classes")
             # Apply SMOTE to balance classes
-            smote_balance(train_df)
-            smote_balance(test_df)
-
-            logging.info("Replacing categories")
-            # Replace categories
-            replace_categories(train_df)
-            replace_categories(test_df)
+            balanced_train_df=smote_balance(train_df)
+            balanced_test_df=smote_balance(test_df)
 
             logging.info("Extracting features and target columns")
             # Extract features and target columns
-            input_feature_train_df = train_df.drop(columns=drop_columns, axis=1)
-            target_feature_train_df = train_df[target_column_name]
+            input_feature_train_df = balanced_train_df.drop(columns=drop_columns, axis=1)
+            target_feature_train_df = balanced_train_df[target_column_name]
 
-            input_feature_test_df = test_df.drop(columns=drop_columns, axis=1)
-            target_feature_test_df = test_df[target_column_name]
-            
+            input_feature_test_df = balanced_test_df.drop(columns=drop_columns, axis=1)
+            target_feature_test_df = balanced_test_df[target_column_name]
+
             logging.info("Read train and test data complete")
             logging.info(f'Train Dataframe Head:\n{input_feature_train_df.head().to_string()}')
             logging.info(f'Test Dataframe Head:\n{input_feature_test_df.head().to_string()}')

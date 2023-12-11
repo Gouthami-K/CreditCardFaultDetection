@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Defaulter Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Arimo', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #3498db;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .predict {
+      margin: auto;
+      width: 60%;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 2em;
+      margin-top: 2em;
+      border-radius: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5em;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.7em;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 0.5em;
+    }
+
+    .pay-group {
+      margin-bottom: 1.5em;
+    }
+
+    .pay-subgroup {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+    .pay-subgroup .form-group {
+      flex: 1;
+    }
+
+    .PAY_AMT-group {
+      margin-bottom: 1.5em;
+    }
+
+    .pay-subgroup {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+    .pay-subgroup .form-group {
+      flex: 1;
+    }
+
+    .BILL_AMT-group {
+      margin-bottom: 1.5em;
+    }
+
+    .pay-subgroup {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+    .pay-subgroup .form-group {
+      flex: 1;
+    }
+
+    input[type="submit"] {
+      background-color: #3498db;
+      color: #fff;
+      padding: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Credit Card Defaulter Prediction</h1>
+  </header>
+
+  <div class="predict">
+    <form action="{{url_for('predict_datapoint')}}" method="POST">
+
+      <div class="form-group">
+        <label for="LIMIT_BAL">Limit Balance: Amount of given credit in dollar (includes individual and family/supplementary credit)</label>
+        <input type="text" id="LIMIT_BAL" name="LIMIT_BAL" placeholder="amount in dollar">
+      </div>
+
+      <div class="form-group">
+        <label for="SEX">Gender:</label>
+        <select id="SEX" name="SEX" >
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="EDUCATION">Education:</label>
+        <select id="EDUCATION" name="EDUCATION">
+          <option value="1">Graduate school</option>
+          <option value="2">University</option>
+          <option value="3">High school</option>
+          <option value="4">Others</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="MARRIAGE">Marrital Status:</label>
+        <select id="MARRIAGE" name="MARRIAGE">
+          <option value="1">Married</option>
+          <option value="2">Single</option>
+          <option value="3">Others</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="AGE">AGE:</label>
+        <input type="text" id="AGE" name="AGE" placeholder="in years">
+      </div>
+
+      <div class="pay-group">
+        <label for="PAY">Repayment Status:</label>
+
+        <div class="pay-subgroup">
+          <div class="form-group">
+            <label for="PAY_0">April:</label>
+            <select id="PAY_0" name="PAY_0">
+              <option value="-2">no consumption</option>
+              <option value="-1">paid in full</option>
+              <option value="0">paid minimum only</option>
+              <option value="1">payment delay for one month</option>
+              <option value="2">payment delay for two months</option>
+              <option value="3">payment delay for three months</option>
+              <option value="4">payment delay for four months</option>
+              <option value="5">payment delay for five months</option>
+              <option value="6">payment delay for six months</option>
+              <option value="7">payment delay for seven months</option>
+              <option value="8">payment delay for eight months</option>
+            </select>
+          </div>
+            
+          <div class="form-group">
+            <label for="PAY_2">May:</label>
+            <select type="text" id="PAY_2" name="PAY_2">
+              <option value="-2">no consumption</option>
+              <option value="-1">paid in full</option>
+              <option value="0">paid minimum only</option>
+              <option value="1">payment delay for one month</option>
+              <option value="2">payment delay for two months</option>
+              <option value="3">payment delay for three months</option>
+              <option value="4">payment delay for four months</option>
+              <option value="5">payment delay for five months</option>
+              <option value="6">payment delay for six months</option>
+              <option value="7">payment delay for seven months</option>
+              <option value="8">payment delay for eight months</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="PAY_3">June:</label>
+            <select id="PAY_3" name="PAY_3">
+              <option value="-2">no consumption</option>
+              <option value="-1">paid in full</option>
+              <option value="0">paid minimum only</option>
+              <option value="1">payment delay for one month</option>
+              <option value="2">payment delay for two months</option>
+              <option value="3">payment delay for three months</option>
+              <option value="4">payment delay for four months</option>
+              <option value="5">payment delay for five months</option>
+              <option value="6">payment delay for six months</option>
+              <option value="7">payment delay for seven months</option>
+              <option value="8">payment delay for eight months</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="PAY_4">July:</label>
+            <select id="PAY_4" name="PAY_4">
+              <option value="-2">no consumption</option>
+              <option value="-1">paid in full</option>
+              <option value="0">paid minimum only</option>
+              <option value="1">payment delay for one month</option>
+              <option value="2">payment delay for two months</option>
+              <option value="3">payment delay for three months</option>
+              <option value="4">payment delay for four months</option>
+              <option value="5">payment delay for five months</option>
+              <option value="6">payment delay for six months</option>
+              <option value="7">payment delay for seven months</option>
+              <option value="8">payment delay for eight months</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="PAY_5">August:</label>
+            <select id="PAY_5" name="PAY_5">
+              <option value="-2">no consumption</option>
+              <option value="-1">paid in full</option>
+              <option value="0">paid minimum only</option>
+              <option value="1">payment delay for one month</option>
+              <option value="2">payment delay for two months</option>
+              <option value="3">payment delay for three months</option>
+              <option value="4">payment delay for four months</option>
+              <option value="5">payment delay for five months</option>
+              <option value="6">payment delay for six months</option>
+              <option value="7">payment delay for seven months</option>
+              <option value="8">payment delay for eight months</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="PAY_6">September:</label>
+            <select id="PAY_6" name="PAY_6">
+              <option value="-2">no consumption</option>
+              <option value="-1">paid in full</option>
+              <option value="0">paid minimum only</option>
+              <option value="1">payment delay for one month</option>
+              <option value="2">payment delay for two months</option>
+              <option value="3">payment delay for three months</option>
+              <option value="4">payment delay for four months</option>
+              <option value="5">payment delay for five months</option>
+              <option value="6">payment delay for six months</option>
+              <option value="7">payment delay for seven months</option>
+              <option value="8">payment delay for eight months</option>
+            </select>
+        </div>
+
+      </div>
+
+      <div class="BILL_AMT-group">
+        <label for="PAY">Bill Amounts: Amount of bill statements(in dollar)</label>
+
+        <div class="pay-subgroup">
+      
+          <div class="form-group">
+            <label for="BILL_AMT1">April:</label>
+            <input type="text" id="BILL_AMT1" name="BILL_AMT1" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="BILL_AMT2">May:</label>
+            <input type="text" id="BILL_AMT2" name="BILL_AMT2" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="BILL_AMT3">June:</label>
+            <input type="text" id="BILL_AMT3" name="BILL_AMT3" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="BILL_AMT4">July:</label>
+            <input type="text" id="BILL_AMT4" name="BILL_AMT4" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="BILL_AMT5">August:</label>
+            <input type="text" id="BILL_AMT5" name="BILL_AMT5" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="BILL_AMT6">September:</label>
+            <input type="text" id="BILL_AMT6" name="BILL_AMT6" placeholder="0">
+          </div>
+        </div>
+      </div>
+
+      <div class="PAY_AMT-group">
+        <label for="PAY">Previous Payments: Amount of previous payments(in dollar)</label>
+          
+        <div class="pay-subgroup">
+
+          <div class="form-group">
+            <label for="PAY_AMT1">April:</label>
+            <input type="text" id="PAY_AMT1" name="PAY_AMT1" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="PAY_AMT2">May:</label>
+            <input type="text" id="PAY_AMT2" name="PAY_AMT2" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="PAY_AMT3">June:</label>
+            <input type="text" id="PAY_AMT3" name="PAY_AMT3" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="PAY_AMT4">July:</label>
+            <input type="text" id="PAY_AMT4" name="PAY_AMT4" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="PAY_AMT5">August:</label>
+            <input type="text" id="PAY_AMT5" name="PAY_AMT5" placeholder="0">
+          </div>
+      
+          <div class="form-group">
+            <label for="PAY_AMT6">September:</label>
+            <input type="text" id="PAY_AMT6" name="PAY_AMT6" placeholder="0">
+          </div>
+        </div>
+      </div>
+
+      <div style="clear:both;"></div>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>

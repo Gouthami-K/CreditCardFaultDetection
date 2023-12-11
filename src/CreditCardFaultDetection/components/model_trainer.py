@@ -14,7 +14,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.naive_bayes import GaussianNB
-from xgboost import XGBClassifier
+#from xgboost import XGBClassifier
 
 
 
@@ -39,15 +39,13 @@ class ModelTrainer:
 
             models = {
             #'RandomForest': RandomForestClassifier(),
-            'Xgboost':XGBClassifier(),
             'SVM': SVC(C=0.01, degree=5, kernel='poly'),
             'KNN': KNeighborsClassifier(),
             'DecisionTree': DecisionTreeClassifier(),
             'GradientBoosting': GradientBoostingClassifier(),
             'LogisticRegression': LogisticRegression(max_iter=1000),
             'AdaBoosting':AdaBoostClassifier(),
-            'Naive Bayes': GaussianNB(),
-            #'Xgboost': XGBClassifier()
+            'Naive Bayes': GaussianNB()
             }
 
             model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models)

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from src.CreditCardFaultDetection.logger import logging
 from src.CreditCardFaultDetection.exception import customexception
+from src.CreditCardFaultDetection.data_access.mongo_conn import MongoConnector
 
 import os
 import sys
@@ -24,8 +25,15 @@ class DataIngestion:
         logging.info("data ingestion started")
         
         try:
-            data=pd.read_csv(Path(os.path.join("notebooks/data","UCI_Credit_Card.csv")))
-            logging.info(" I have read dataset as a df")
+            # to retrieve data from MongoDB
+            mongo_uri = "mongodb+srv://zomato:zomato@zomato.0zgtc3p.mongodb.net/?retryWrites=true&w=majority"
+            database_name = "credit_card"
+            collection_name = "data"
+
+            mongodb_data = MongoConnector.get_data_from_database(mongo_uri, database_name, collection_name)
+    
+            data = pd.DataFrame(mongodb_data)
+            logging.info(" I have read dataset from MongoDB as a df")
             
             
             os.makedirs(os.path.dirname(os.path.join(self.ingestion_config.raw_data_path)),exist_ok=True)

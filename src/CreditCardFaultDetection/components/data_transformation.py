@@ -123,9 +123,12 @@ class DataTransformation:
             #rename_and_drop(train_df)
             #rename_and_drop(test_df)
 
-            #logging.info("Applying SMOTE to balance classes")
+            logging.info("Applying SMOTE to balance classes")
             # Apply SMOTE to balance classes
+            train_df = train_df.drop(columns=['_id'], axis=1)
             balanced_train_df=smote_balance(train_df)
+
+            test_df = test_df.drop(columns=['_id'], axis=1)
             balanced_test_df=smote_balance(test_df)
 
             logging.info("Extracting features and target columns")

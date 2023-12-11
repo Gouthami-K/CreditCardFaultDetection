@@ -5,5 +5,9 @@ seaborn
 ipykernel
 Flask
 imblearn
+pymongo[srv]
+mlflow
+xgboost
+
 
 -e .

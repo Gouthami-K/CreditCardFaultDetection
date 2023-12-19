@@ -19,3 +19,24 @@ The dataset used in this project contains information on default payments, demog
 
 ```bash
 pip install -r requirements.txt
+
+### Usage
+
+Data Exploration: Explore the dataset to understand its structure and characteristics.
+Data Preprocessing: Handle missing values, encode categorical variables, and scale numerical features.
+Model Selection: Train and evaluate various machine learning models (SVM, KNN, Decision Tree, Gradient Boosting, Logistic Regression, AdaBoosting, Naive Bayes).
+Model Training: Choose the best-performing model and train it on the dataset.
+Results: Evaluate and analyze the model's performance, strengths, weaknesses, and any challenges encountered.
+Conclusion: Summarize key findings, implications for credit card companies, and future steps for improvement.
+Results
+The Gradient Boosting model emerged as the most effective, achieving an accuracy of 79.08% on the test set.
+
+### Future Work
+Explore additional features, fine-tune hyperparameters, and consider more advanced techniques for handling imbalanced data.
+
+Contributors
+[Gouthami K]
+[Abhijith Paul]
+
+### License
+This project is licensed under the MIT License.

@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ## Usage
 
 1. **Data Exploration:** Explore the dataset to understand its structure and characteristics.
-2. **Data Preprocessing:** Handle missing values, Balancing imbalance data, and scale numerical features.
+2. **Data Preprocessing:** Balancing imbalance data, and scale numerical features.
 3. **Model Selection:** Train and evaluate various machine learning models (SVM, KNN, Decision Tree, Gradient Boosting, Logistic Regression, AdaBoosting, Naive Bayes).
 4. **Model Training:** Choose the best-performing model and train it on the dataset.
 5. **Results:** Evaluate and analyze the model's performance, strengths, weaknesses, and any challenges encountered.

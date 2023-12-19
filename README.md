@@ -30,7 +30,7 @@ pip install -r requirements.txt
 5. **Results:** Evaluate and analyze the model's performance, strengths, weaknesses, and any challenges encountered.
 6. **Deployment on AWS:** Deploy the model on AWS for real-world applications.
 7. **Video Demonstration:** Check out this [video](https://drive.google.com/file/d/1CVqEcoPhd14H_T19_MkDb_9rSqrv6L9r/view?usp=drive_link) for a demonstration of the HTML page.
-8. 
+   
 ## Results
 
 The Gradient Boosting model emerged as the most effective, achieving an accuracy of 79.08% on the test set.

@@ -19,8 +19,9 @@ The dataset used in this project contains information on default payments, demog
 
 ```bash
 pip install -r requirements.txt
+```
 
-## **Usage**
+## Usage
 
 1. **Data Exploration:** Explore the dataset to understand its structure and characteristics.
 2. **Data Preprocessing:** Handle missing values, encode categorical variables, and scale numerical features.
@@ -29,19 +30,19 @@ pip install -r requirements.txt
 5. **Results:** Evaluate and analyze the model's performance, strengths, weaknesses, and any challenges encountered.
 6. **Conclusion:** Summarize key findings, implications for credit card companies, and future steps for improvement.
 
-## **Results**
+## Results
 
 The Gradient Boosting model emerged as the most effective, achieving an accuracy of 79.08% on the test set.
 
-## **Future Work**
+## Future Work
 
 Explore additional features, fine-tune hyperparameters, and consider more advanced techniques for handling imbalanced data.
 
-## **Contributors**
+## Contributors
 
 - Gouthami K
 - Abhijith Paul
 
-## **License**
+## License
 
 This project is licensed under the MIT License.

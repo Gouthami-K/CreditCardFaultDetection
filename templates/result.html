@@ -47,7 +47,13 @@
   </header>
 
   <div class="result">
-    <h1>The Credit card fault detection result is: <span style="color: {{result_color}};">{{final_result}}</span></h1>
+    <h1>The Credit card fault detection result is:</h1>
+    <span style="color: {{result_color}}; font-size: 1.5em;">{{final_result}}</span>
+    {% if final_result == 1 %}
+        <p style="color: red; font-size: 1.2em;">The person might not be able to make their credit card payment in the next month.</p>
+    {% else %}
+        <p style="color: green; font-size: 1.2em;">There is no indication that the person is likely to have trouble making their credit card payment in the next month.</p>
+    {% endif %}  
   </div>
 </body>
 </html>

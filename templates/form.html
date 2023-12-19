@@ -38,6 +38,13 @@
       margin-bottom: 1.5em;
     }
 
+    .form-group-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    }
+
+
     label {
       display: block;
       margin-bottom: 0.5em;
@@ -123,38 +130,40 @@
         <input type="text" id="LIMIT_BAL" name="LIMIT_BAL" placeholder="amount in dollar">
       </div>
 
-      <div class="form-group">
-        <label for="SEX">Gender:</label>
-        <select id="SEX" name="SEX" >
-          <option value="1">Male</option>
-          <option value="2">Female</option>
-        </select>
+      <div class="form-group-container">
+        <div class="form-group">
+          <label for="SEX">Gender:</label>
+          <select id="SEX" name="SEX">
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="EDUCATION">Education:</label>
+          <select id="EDUCATION" name="EDUCATION">
+            <option value="1">Graduate school</option>
+            <option value="2">University</option>
+            <option value="3">High school</option>
+            <option value="4">Others</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="MARRIAGE">Marital Status:</label>
+          <select id="MARRIAGE" name="MARRIAGE">
+            <option value="1">Married</option>
+            <option value="2">Single</option>
+            <option value="3">Others</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="AGE">AGE:</label>
+          <input type="text" id="AGE" name="AGE" placeholder="in years">
+        </div>
       </div>
-  
-      <div class="form-group">
-        <label for="EDUCATION">Education:</label>
-        <select id="EDUCATION" name="EDUCATION">
-          <option value="1">Graduate school</option>
-          <option value="2">University</option>
-          <option value="3">High school</option>
-          <option value="4">Others</option>
-        </select>
-      </div>
-  
-      <div class="form-group">
-        <label for="MARRIAGE">Marrital Status:</label>
-        <select id="MARRIAGE" name="MARRIAGE">
-          <option value="1">Married</option>
-          <option value="2">Single</option>
-          <option value="3">Others</option>
-        </select>
-      </div>
-  
-      <div class="form-group">
-        <label for="AGE">AGE:</label>
-        <input type="text" id="AGE" name="AGE" placeholder="in years">
-      </div>
-
+      
       <div class="pay-group">
         <label for="PAY">Repayment Status:</label>
 

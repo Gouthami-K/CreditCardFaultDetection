@@ -24,13 +24,13 @@ pip install -r requirements.txt
 ## Usage
 
 1. **Data Exploration:** Explore the dataset to understand its structure and characteristics.
-2. **Data Preprocessing:** Handle missing values, encode categorical variables, and scale numerical features.
+2. **Data Preprocessing:** Balancing imbalance data, and scale numerical features.
 3. **Model Selection:** Train and evaluate various machine learning models (SVM, KNN, Decision Tree, Gradient Boosting, Logistic Regression, AdaBoosting, Naive Bayes).
 4. **Model Training:** Choose the best-performing model and train it on the dataset.
 5. **Results:** Evaluate and analyze the model's performance, strengths, weaknesses, and any challenges encountered.
 6. **Deployment on AWS:** Deploy the model on AWS for real-world applications.
-7. **Conclusion:** Summarize key findings, implications for credit card companies, and future steps for improvement.
-
+7. **Video Demonstration:** Check out this [video](https://drive.google.com/file/d/1CVqEcoPhd14H_T19_MkDb_9rSqrv6L9r/view?usp=drive_link) for a demonstration of the HTML page.
+   
 ## Results
 
 The Gradient Boosting model emerged as the most effective, achieving an accuracy of 79.08% on the test set.

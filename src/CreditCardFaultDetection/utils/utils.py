@@ -8,7 +8,7 @@ from src.CreditCardFaultDetection.exception import customexception
 
 from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score,roc_auc_score,confusion_matrix,classification_report
 from imblearn.over_sampling import SMOTE
-from sklearn.model_selection import GridSearchCV
+#from sklearn.model_selection import GridSearchCV
 
 def save_object(file_path, obj):
     try:

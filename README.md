@@ -33,7 +33,7 @@ pip install -r requirements.txt
    
 ## Results
 
-The Gradient Boosting model emerged as the most effective, achieving an accuracy of 79.08% on the test set.
+The Gradient Boosting model emerged as the most effective, achieving an good accuracy on the test set.
 
 ## Future Work
 

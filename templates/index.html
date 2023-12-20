@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Credit Card Defaulter Prediction</title>
+  <title>Credit Card Default Detection</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -29,6 +29,19 @@
       width: 100%;
     }
 
+    #proceedButton {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+    }
+    
+
     .result {
       width: 60%;
       background-color: #fff;
@@ -37,6 +50,10 @@
       margin-top: 2em;
       border-radius: 8px;
       text-align: center;
+    }
+
+    .Proceed {
+      margin-top: 2em; /* Add margin at the top to separate from the header */
     }
 
     .result h1 {
@@ -53,8 +70,18 @@
 </head>
 <body>
   <header>
-    <h1>Welcome to Credit Card Fault Detection System</h1>
+    <h1>Welcome to Credit Card Default Detection System</h1>
   </header>
-
+  <br/>
+  <br/>
+  <br/>
+  <div class="Proceed">
+      <a href="{{url_for('predict_datapoint')}}">
+        <button id="proceedButton">Proceed</button>
+      </a>
+  </div>
 </body>
 </html>
+
+
+

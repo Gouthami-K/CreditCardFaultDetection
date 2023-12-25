@@ -8,6 +8,6 @@ imblearn
 pymongo[srv]
 mlflow
 xgboost
-
+gunicorn
 
 -e .

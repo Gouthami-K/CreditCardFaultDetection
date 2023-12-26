@@ -6,8 +6,9 @@ ipykernel
 Flask
 imblearn
 pymongo[srv]
-mlflow
+mlflow==2.2.2
 xgboost
 gunicorn
+dvc
 
 -e .
